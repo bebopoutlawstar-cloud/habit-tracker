@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react';
 import HabitForm from './components/HabitForm';
 import HabitCard from './components/HabitCard';
 import StatsPanel from './components/StatsPanel';
-
+import './App.css';
 
 function App() {
   const [habits, setHabits] = useState(() => {
-  const saved = localStorage.getItem('habits');
-  return saved ? JSON.parse(saved) : [];
-});
+    const saved = localStorage.getItem('habits');
+    return saved ? JSON.parse(saved) : [];
+  });
 
-useEffect(() => {
-  localStorage.setItem('habits', JSON.stringify(habits));
-}, [habits]);
+  useEffect(() => {
+    localStorage.setItem('habits', JSON.stringify(habits));
+  }, [habits]);
 
   function addHabit(habitName) {
     const newHabit = {
@@ -25,45 +25,48 @@ useEffect(() => {
   }
 
   function deleteHabit(id) {
-    const updatedHabits = habits.filter((habit) => habit.id !== id);
-    setHabits(updatedHabits);
+    setHabits(habits.filter((habit) => habit.id !== id));
   }
 
   function completeHabit(id) {
-    const updatedHabits = habits.map((habit) => {
-      if (habit.id === id) {
-        return {
-          ...habit,
-          streak: habit.streak + 1,
-          totalCompletions: habit.totalCompletions + 1
-        };
-      }
-      return habit;
-    });
-    setHabits(updatedHabits);
+    setHabits(
+      habits.map((habit) =>
+        habit.id === id
+          ? {
+              ...habit,
+              streak: habit.streak + 1,
+              totalCompletions: habit.totalCompletions + 1
+            }
+          : habit
+      )
+    );
   }
 
   return (
     <div className='container'>
-      <h1>Habit Tracker</h1>
-      <HabitForm addHabit={addHabit} />
-      <h3><StatsPanel habits={habits} /></h3>
-      {habits.length === 0 ? (
-        <p className='empty-message'>
-          No habits yet. Add your first habit!
-        </p>
-      ) : (
-        <div className='task-list'>
-          {habits.map((habit) => (
-            <HabitCard
-              key={habit.id}
-              habit={habit}
-              deleteHabit={deleteHabit}
-              completeHabit={completeHabit}
-            />
-          ))}
-        </div>
-      )}
+      <header>
+        <h1>Habit Tracker</h1>
+      </header>
+      <main>
+        <section className='add-habit'>
+          <HabitForm addHabit={addHabit} />
+        </section>
+        <StatsPanel habits={habits} />
+        <section className='habit-list'>
+          {habits.length === 0 ? (
+            <p className='empty-message'>No habits yet. Add your first habit!</p>
+          ) : (
+            habits.map((habit) => (
+              <HabitCard
+                key={habit.id}
+                habit={habit}
+                deleteHabit={deleteHabit}
+                completeHabit={completeHabit}
+              />
+            ))
+          )}
+        </section>
+      </main>
     </div>
   );
 }
