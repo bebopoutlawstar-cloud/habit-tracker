@@ -1,19 +1,24 @@
-# React + Vite
+# Habit Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A habit and wellness tracking web app built with React. Add the daily habits you want to build, mark them complete each day, and watch your streaks grow. Your habits are saved in the browser, so they're still there when you come back.
 
-Currently, two official plugins are available:
+Built as the capstone project for the QuickStart AI-Centric Front-End Bootcamp.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Add daily habits (empty names are rejected)
+- Mark a habit complete for the day to grow its streak
+- See each habit's current streak and total completions
+- Stats panel with total habits and total completions
+- Delete habits you no longer want to track
+- Data persists between visits using localStorage
+- Responsive layout that works on phones and desktop
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Built With
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+- React 19 (functional components, useState, useEffect)
+- Vite
+- Plain CSS with a cyberpunk-inspired theme
+- Google Fonts (Orbitron, Share Tech Mono)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
