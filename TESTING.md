@@ -36,3 +36,8 @@ Result: Saves proper
 Steps: Dragged the browser window narrow (under 600px).
 Expected: Stats stack vertically and card buttons go full-width.
 Result: Results work
+
+## 8. Once-per-day completion
+Steps: Clicked "Complete today" several times on one habit, then refreshed the page.
+Expected: Streak and total only go up by 1 per day, and the button changes to "Done today ✓".
+Result: Could only complete it once, and it stayed done after refreshing
