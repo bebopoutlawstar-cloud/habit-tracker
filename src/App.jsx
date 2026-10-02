@@ -9,7 +9,6 @@ function App() {
     const saved = localStorage.getItem('habits');
     return saved ? JSON.parse(saved) : [];
   });
-
   useEffect(() => {
     localStorage.setItem('habits', JSON.stringify(habits));
   }, [habits]);
@@ -19,7 +18,8 @@ function App() {
       id: Date.now(),
       name: habitName,
       streak: 0,
-      totalCompletions: 0
+      totalCompletions: 0,
+      lastCompleted: null
     };
     setHabits([...habits, newHabit]);
   }
@@ -29,13 +29,15 @@ function App() {
   }
 
   function completeHabit(id) {
+    const today = new Date().toDateString();
     setHabits(
       habits.map((habit) =>
-        habit.id === id
+        habit.id === id && habit.lastCompleted !== today
           ? {
               ...habit,
               streak: habit.streak + 1,
-              totalCompletions: habit.totalCompletions + 1
+              totalCompletions: habit.totalCompletions + 1,
+              lastCompleted: today
             }
           : habit
       )
